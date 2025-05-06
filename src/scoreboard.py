@@ -9,12 +9,13 @@ class Scoreboard:
         self.writer.goto(x=-config.SCREEN_WIDTH/2+70,
                          y=config.SCREEN_HEIGHT/2-30)
         self.writer.hideturtle()
+
         self.current_level = 1
 
-        self.game_over_write = Turtle()
-        self.game_over_write.up()
-        self.game_over_write.hideturtle()
-        self.game_over_write.color("red")
+        self.game_over_writer = Turtle()
+        self.game_over_writer.up()
+        self.game_over_writer.hideturtle()
+        self.game_over_writer.color("red")
 
     def write_current_level(self):
         self.writer.clear()
@@ -25,6 +26,6 @@ class Scoreboard:
         self.current_level += 1
 
     def write_game_over(self):
-        self.game_over_write.write("GAME OVER",align= 'center', font=('Arial', 15, 'normal'))
-        self.game_over_write.goto(0, -30)
-        self.game_over_write.write(f"Your final level: {self.current_level}",align= 'center', font=('Arial', 15, 'normal'))
+        self.game_over_writer.write("GAME OVER",align= 'center', font=('Arial', 15, 'normal'))
+        self.game_over_writer.goto(0, -30)
+        self.game_over_writer.write(f"Your final level: {self.current_level}",align= 'center', font=('Arial', 15, 'normal'))

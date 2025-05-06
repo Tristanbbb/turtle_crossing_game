@@ -11,6 +11,7 @@ def screen_setup():
     screen.title('Turtle Crossing Game')
     return screen
 
+# Useful function to visualize precise coordinates on the screen
 def draw_line(vertical_or_horizontal: str, coordinate: int):
     turtle = Turtle()
     turtle.hideturtle()
@@ -30,7 +31,7 @@ def draw_line(vertical_or_horizontal: str, coordinate: int):
         turtle.goto(x=config.SCREEN_WIDTH/2, y=coordinate)
         turtle.write(coordinate)
 
-
+# Useful for measuring approximate distances on the screen
 def draw_grid(step: int):
     if config.SCREEN_HEIGHT % 10 != 0 or config.SCREEN_WIDTH % 10 != 0:
         raise ValueError("draw_grid() error: the grid's height and width must be multiples of 10")

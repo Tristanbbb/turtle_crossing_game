@@ -15,11 +15,12 @@ class CollisionManager:
                     or car.hitbox_top > self.player.hitbox_bottom > car.hitbox_bottom) \
                     and (car.hitbox_right > self.player.hitbox_right > car.hitbox_left
                     or car.hitbox_right > self.player.hitbox_left > car.hitbox_left):
-                car.print_hitbox_coordinates()
-                self.player.print_hitbox_coordinates()
+                # Useful for debugging the collision logic:
+                # car.print_hitbox_coordinates()
+                # self.player.print_hitbox_coordinates()
                 return True
         return False
 
-    # Returns True if the player reached the upper wall (in which case level up)
+    # Returns True if the player reached the upper wall (in which case, level up)
     def check_upper_wall_collision(self):
         return self.player.hitbox_top >= config.FINISH_LINE_Y

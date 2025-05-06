@@ -1,7 +1,6 @@
 from turtle import Turtle
 
-# Class inheriting from Turtle, and from which Car and Player are inheriting
-
+# Class inheriting from Turtle, and from which Car and Player are inheriting because both Car and Player need hitbox logic
 class GameObject(Turtle):
     def __init__(self):
         super().__init__()

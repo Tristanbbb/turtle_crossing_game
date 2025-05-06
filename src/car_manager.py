@@ -46,7 +46,7 @@ class CarManager:
 
 
     def increase_difficulty(self, current_level):
-        # TODO: add mechanism to spawn cars from both sides
+        # Starting from level 3, cars come from both sides!
         if current_level == 3:
             self.spawn_policy = SpawnPolicy.BOTH
             self.spawn_threshold_decrease = 0.1

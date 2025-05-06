@@ -22,7 +22,7 @@ for i in range(200):
 
 scoreboard.write_current_level() # Level 1
 
-# Main game loo
+# Main game loop
 game_is_on = True
 while game_is_on:
     screen.update()
@@ -37,7 +37,6 @@ while game_is_on:
     if collision_manager.check_car_collision(): # Then game over!
         screen.update()
         break
-
 
 scoreboard.write_game_over()
 screen.exitonclick()

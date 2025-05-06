@@ -10,7 +10,7 @@ FINISH_LINE_Y = 299
 # Scoreboard
 FONT = ("Courier", 18, "normal")
 
-# Player config
+# Player configuration
 STARTING_POSITION = (0, -280)
 MOVE_DISTANCE = 10
 
