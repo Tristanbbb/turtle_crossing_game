@@ -1,5 +1,5 @@
 import config
-from src.game_object import GameObject
+from src.game_objects.game_object import GameObject
 
 class Player(GameObject):
     def __init__(self):

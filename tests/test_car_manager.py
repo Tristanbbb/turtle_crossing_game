@@ -1,6 +1,5 @@
 import unittest
-from src.car_manager import CarManager
-from src.screen_setup import screen_setup
+from src.managers.car_manager import CarManager
 
 class PlayerTest(unittest.TestCase):
     def setUp(self):

@@ -1,7 +1,7 @@
 import config
 import random
-from src.spawn_logic import SpawnPolicy, SpawnSide
-from src.car import Car
+from src.managers.spawn_logic import SpawnPolicy, SpawnSide
+from src.game_objects.car import Car
 
 class CarManager:
     def __init__(self):
@@ -12,7 +12,7 @@ class CarManager:
         self.spawn_threshold_decrease = 0.05
 
     # Called at each game loop
-    def car_manager_actions_wrapper(self):
+    def generate_and_move_wrapper(self):
         self.generate_car_random()
         self.move_cars()
 
@@ -47,6 +47,7 @@ class CarManager:
 
     def increase_difficulty(self, current_level):
         # Starting from level 3, cars come from both sides!
+        # We also set a bugger spawn threshold decrease, otherwise the screen is not populated enough
         if current_level == 3:
             self.spawn_policy = SpawnPolicy.BOTH
             self.spawn_threshold_decrease = 0.1

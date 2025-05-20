@@ -1,7 +1,7 @@
 import config
 import random
-from src.game_object import GameObject
-from src.spawn_logic import SpawnSide
+from src.game_objects.game_object import GameObject
+from src.managers.spawn_logic import SpawnSide
 
 COLORS = ["red", "orange", "yellow", "green", "blue", "purple"]
 

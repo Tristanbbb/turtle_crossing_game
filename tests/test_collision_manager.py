@@ -1,11 +1,9 @@
 import unittest
 
-import config
-from src.collision_manager import CollisionManager
-from src.car_manager import CarManager
-from src.car import Car
-from src.player import Player
-from src.screen_setup import screen_setup, draw_grid, draw_line
+from src.managers.collision_manager import CollisionManager
+from src.managers.car_manager import CarManager
+from src.game_objects.car import Car
+from src.game_objects.player import Player
 
 DRAW_GRID = False # Set to True/False to draw grid
 
@@ -25,9 +23,7 @@ def print_coordinates(extended_turtle):
 class CollisionManagerBase(unittest.TestCase):
     # Setting up the screen and player for all subsequent tests
     def setUp(self):
-        self.screen = screen_setup()
-        if DRAW_GRID:
-            draw_grid(10)
+
         self.player = Player()
         self.player.refresh_hitbox_coordinates()
 
@@ -35,6 +31,8 @@ class CollisionManagerBase(unittest.TestCase):
         self.collision_manager = CollisionManager(car_manager=self.car_manager,
                                                  player=self.player)
 
+
+# Class testing the arrival of the player to the top (=level up)
 class CollisionManagerPlayerToTopTest(CollisionManagerBase):
 
     # def tearDown(self):
@@ -44,16 +42,14 @@ class CollisionManagerPlayerToTopTest(CollisionManagerBase):
         #draw_line("horizontal", config.FINISH_LINE_Y)
         for i in range(56):
             self.player.move()
-        self.screen.update()
         self.assertFalse(self.collision_manager.check_upper_wall_collision())
 
     def test_finish_line_crossed(self):
         for i in range(57):
             self.player.move()
-        self.screen.update()
         self.assertTrue(self.collision_manager.check_upper_wall_collision())
 
-
+# Class testing the collision between the player and the cars (= game over)
 class CollisionManagerPlayerToCarTest(CollisionManagerBase):
 
     def setUp(self):
@@ -69,14 +65,12 @@ class CollisionManagerPlayerToCarTest(CollisionManagerBase):
 
         print_coordinates(self.player)
         print_coordinates(self.car_manager.car_list[0])
-        self.screen.update()
         self.assertFalse(self.collision_manager.check_car_collision())
 
     # One pixel into a front collision, collision expected
     def test_front_collision(self):
         self.car_manager.car_list[0].goto(0,26)
         self.car_manager.car_list[0].refresh_hitbox_coordinates()
-        self.screen.update()
         print_coordinates(self.player)
         print_coordinates(self.car_manager.car_list[0])
         self.assertTrue(self.collision_manager.check_car_collision())
@@ -85,35 +79,30 @@ class CollisionManagerPlayerToCarTest(CollisionManagerBase):
         # no collision
         self.car_manager.car_list[0].goto(30, 0)
         self.car_manager.car_list[0].refresh_hitbox_coordinates()
-        self.screen.update()
         self.assertFalse(self.collision_manager.check_car_collision())
 
     def test_left_of_car_collision(self):
         # collision
         self.car_manager.car_list[0].goto(29, 0)
         self.car_manager.car_list[0].refresh_hitbox_coordinates()
-        self.screen.update()
         self.assertTrue(self.collision_manager.check_car_collision())
 
     def test_right_of_car_no_collision(self):
         # no collision
         self.car_manager.car_list[0].goto(-30, 0)
         self.car_manager.car_list[0].refresh_hitbox_coordinates()
-        self.screen.update()
         self.assertFalse(self.collision_manager.check_car_collision())
 
     def test_right_of_car_collision(self):
         # collision
         self.car_manager.car_list[0].goto(-29, 0)
         self.car_manager.car_list[0].refresh_hitbox_coordinates()
-        self.screen.update()
         self.assertTrue(self.collision_manager.check_car_collision())
 
     def test_back_no_collision(self):
         # no collision
         self.car_manager.car_list[0].goto(0, -19)
         self.car_manager.car_list[0].refresh_hitbox_coordinates()
-        self.screen.update()
         self.assertFalse(self.collision_manager.check_car_collision())
 
     def test_back_collision(self):
@@ -121,20 +110,21 @@ class CollisionManagerPlayerToCarTest(CollisionManagerBase):
         self.car_manager.car_list[0].goto(0, -18)
         self.car_manager.car_list[0].refresh_hitbox_coordinates()
         self.car_manager.car_list[0].print_hitbox_coordinates()
-        self.screen.update()
         self.assertTrue(self.collision_manager.check_car_collision())
 
     def test_diagonal_no_collision(self):
         # no collision
         self.car_manager.car_list[0].goto(28, -18)
         self.car_manager.car_list[0].refresh_hitbox_coordinates()
-        self.screen.update()
         self.assertTrue(self.collision_manager.check_car_collision())
 
     def test_diagonal_collision(self):
         # collision
         self.car_manager.car_list[0].goto(27, -18)
         self.car_manager.car_list[0].refresh_hitbox_coordinates()
-        self.screen.update()
         self.assertTrue(self.collision_manager.check_car_collision())
 
+    def test_center_collision(self):
+        self.car_manager.car_list[0].goto(0, 1)
+        self.car_manager.car_list[0].refresh_hitbox_coordinates()
+        self.assertTrue(self.collision_manager.check_car_collision())

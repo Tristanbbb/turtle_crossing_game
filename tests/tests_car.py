@@ -1,14 +1,11 @@
 import unittest
 
 import config
-from src.car import Car
-from src.screen_setup import screen_setup
-from src.spawn_logic import SpawnSide
+from src.game_objects.car import Car
+from src.managers.spawn_logic import SpawnSide
 
 
 class PlayerTest(unittest.TestCase):
-    def setUp(self):
-        self.screen = screen_setup()
 
     def test_move(self):
         car = Car(spawn_side=SpawnSide.RIGHT)

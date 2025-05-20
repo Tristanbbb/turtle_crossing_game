@@ -6,9 +6,13 @@ REFRESH_INTERVAL = 0.1 # Refresh interval in seconds
 SCREEN_WIDTH = 600
 SCREEN_HEIGHT = 600
 FINISH_LINE_Y = 299
+FONT_CURRENT_LEVEL = ("Courier", 18, "normal")
+FONT_TOP_LEVEL = ("Courier", 15, "normal")
+FONT_GAME_OVER = ('Courier', 15, 'normal')
 
 # Scoreboard
-FONT = ("Courier", 18, "normal")
+SCORES_FILE_PATH = "./data/scores.json"
+MAX_SCORES_SAVED = 3
 
 # Player configuration
 STARTING_POSITION = (0, -280)

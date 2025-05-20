@@ -1,12 +1,9 @@
 import unittest
 import config
-from src.player import Player
-from src.screen_setup import screen_setup
+from src.game_objects.player import Player
 
 
 class PlayerTest(unittest.TestCase):
-    def setUp(self):
-        self.screen = screen_setup()
 
     def test_move(self):
         player = Player()
